@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: job-scheduler
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: MAILTRAP_USERNAME
+        value: 7e0f7ca783ab41
+      - key: MAILTRAP_PASSWORD
+        value: 8f27be25602336
+      - key: REDIS_URL
+        value: redis://localhost:6379/0
+
