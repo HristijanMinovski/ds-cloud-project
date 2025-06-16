@@ -1,14 +1,34 @@
 services:
+  - type: redis
+    name: redis-celery
+    ipAllowList: [] # Allow all access
+
   - type: web
     name: job-scheduler
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    startCommand: uvicorn worker_2:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: MAILTRAP_USERNAME
-        value: 7e0f7ca783ab41
-      - key: MAILTRAP_PASSWORD
-        value: 8f27be25602336
       - key: REDIS_URL
-        value: redis://localhost:6379/0
+        fromService:
+          name: redis-celery
+          property: connectionString
+      - key: MAILTRAP_USER
+        sync: false
+      - key: MAILTRAP_PASS
+        sync: false
 
+  - type: worker
+    name: celery-worker
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: celery -A tasks worker --loglevel=info
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          name: redis-celery
+          property: connectionString
+      - key: MAILTRAP_USER
+        sync: false
+      - key: MAILTRAP_PASS
+        sync: false
