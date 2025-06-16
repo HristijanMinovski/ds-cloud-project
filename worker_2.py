@@ -10,9 +10,9 @@ import os
 from tasks import send_email_async
 
 from authentication import get_current_worker, get_current_admin
-from models import Worker, Job, Admin, LevelEnum, Statistics
-from database import SessionLocal, init_db
-from auth_utils import hash_password, verify_password, create_access_token
+from models_2 import Worker, Job, Admin, LevelEnum, Statistics
+from database_1 import SessionLocal, init_db
+from auth_utils_1 import hash_password, verify_password, create_access_token
 
 load_dotenv()
 
