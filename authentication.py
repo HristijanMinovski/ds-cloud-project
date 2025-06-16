@@ -1,8 +1,8 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models import Admin, Worker  
+from database_1 import SessionLocal
+from models_2 import Admin, Worker  
 from jose import JWTError, jwt
 from fastapi import Header
 # for Authentication for every end-point
