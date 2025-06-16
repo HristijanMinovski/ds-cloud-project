@@ -6,4 +6,4 @@ aiosmtplib
 celery
 redis
 python-dotenv
-flask
+
