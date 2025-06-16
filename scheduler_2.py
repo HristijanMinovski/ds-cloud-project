@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException,BackgroundTasks
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from database import SessionLocal, init_db
-from models import Job, LevelEnum, Worker
+from database_1 import SessionLocal, init_db
+from models_2 import Job, LevelEnum, Worker
 from tasks import send_email_async
 import json
 
